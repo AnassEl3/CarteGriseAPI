@@ -24,21 +24,22 @@ public class Vehicule {
     @Setter(AccessLevel.PROTECTED)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 15)
     private String modele;
 
-    @Column(nullable = false) 
+    @Column(nullable = false, length = 15) 
     private String marque;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 15)
     private String carburant;
-        
+    
+    @Column(nullable = false, length = 15)
     private String puissance;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 2)
     private Integer nb_place;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 2)
     private Integer nb_cylindres;
     
     private Double ptac;

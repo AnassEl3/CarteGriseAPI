@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cartegrise.cartgriseapi.configuration.AuthenticationRequest;
-import com.cartegrise.cartgriseapi.configuration.AuthenticationResponse;
-import com.cartegrise.cartgriseapi.configuration.RegisterRequest;
+import com.cartegrise.cartgriseapi.dtos.AuthenticationRequest;
+import com.cartegrise.cartgriseapi.dtos.AuthenticationResponse;
+import com.cartegrise.cartgriseapi.dtos.RegisterRequest;
 import com.cartegrise.cartgriseapi.services.AuthenticationService;
 
 @Controller

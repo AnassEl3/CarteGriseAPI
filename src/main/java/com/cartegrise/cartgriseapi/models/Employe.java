@@ -30,18 +30,18 @@ public class Employe implements UserDetails {
     @Setter(AccessLevel.PROTECTED)
     private Long id;
     
-    @Column(nullable = false)
+    @Column(nullable = false, length = 30)
     private String nom;
-    
-    @Column(nullable = false)
+
+    @Column(nullable = false, length = 30)
     private String prenom;
 
     private Date date_naissance;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 10, unique = true)
     private String cin;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 30)
     private String mot_de_passe;
 
     @Override

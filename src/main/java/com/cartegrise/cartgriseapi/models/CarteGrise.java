@@ -26,18 +26,20 @@ public class CarteGrise {
     @Setter(AccessLevel.PROTECTED)
     private Long id;
     
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20, unique = true)
     private String immatriculation;
-
+    
+    @Column(length = 20)
     private String immatriculation_anterieure;
-
+    
     @Column(nullable = false)
     private Date date_premiere_utilisation;
-
+    
     private Date date_mutation;
-
+    
     @Column(nullable = false)
     private Date date_fin_validation;
     
+    @Column(length = 20)
     private String vehicule_usage;
 }

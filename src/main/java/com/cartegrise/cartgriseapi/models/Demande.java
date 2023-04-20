@@ -27,13 +27,13 @@ public class Demande {
     @Setter(AccessLevel.PROTECTED)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String type;
 
     @Column(nullable = false)
     private Date date_demande;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 2)
     private String etat;
     
     private String description_etat;

@@ -24,7 +24,7 @@ public class Document {
     @Setter(AccessLevel.PROTECTED)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String nom;
 
     @Column(nullable = false)

@@ -1,4 +1,6 @@
-package com.cartegrise.cartgriseapi.configuration;
+package com.cartegrise.cartgriseapi.dtos;
+
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +11,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
+public class RegisterRequest {
+    private String nom;
+    private String prenom;
+    private Date date_naissance;
     private String cin;
     private String mot_de_passe;
 }

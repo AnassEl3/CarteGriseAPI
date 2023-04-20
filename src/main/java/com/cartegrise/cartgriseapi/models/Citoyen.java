@@ -26,22 +26,25 @@ public class Citoyen {
     @Setter(AccessLevel.PROTECTED)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 30)
     private String nom;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 30)
     private String prenom;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1)
     private Character sexe;
-
+    
     private Date date_naissance;
+    
+    @Column(nullable = false, length = 10)
     private String lieu_naissance;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 10, unique = true)
     private String cin;
-
+    
     private String adresse;
-
+    
+    @Column(length = 15)
     private String telephone;
 }

@@ -6,9 +6,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.cartegrise.cartgriseapi.configuration.AuthenticationRequest;
-import com.cartegrise.cartgriseapi.configuration.AuthenticationResponse;
-import com.cartegrise.cartgriseapi.configuration.RegisterRequest;
+import com.cartegrise.cartgriseapi.dtos.AuthenticationRequest;
+import com.cartegrise.cartgriseapi.dtos.AuthenticationResponse;
+import com.cartegrise.cartgriseapi.dtos.RegisterRequest;
 import com.cartegrise.cartgriseapi.models.Employe;
 import com.cartegrise.cartgriseapi.repositories.EmployeRepository;
 
