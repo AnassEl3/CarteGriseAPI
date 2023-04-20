@@ -1,19 +1,21 @@
 package com.cartegrise.cartgriseapi.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "documents")
-@Getter
-@Setter
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Document {
@@ -22,6 +24,9 @@ public class Document {
     @Setter(AccessLevel.PROTECTED)
     private Long id;
 
+    @Column(nullable = false)
     private String nom;
+
+    @Column(nullable = false)
     private String chemain;
 }
