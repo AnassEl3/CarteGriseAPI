@@ -1,9 +1,11 @@
 package com.cartegrise.cartgriseapi.v1.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.cartegrise.cartgriseapi.v1.models.CarteGrise;
 
-public interface CarteGriseRepository extends JpaRepository<CarteGrise, Long> {
+@RepositoryRestResource(path = "cartegrises", collectionResourceRel = "cartegrises")
+public interface CarteGriseRepository extends CrudRepository<CarteGrise, Long> {
     
 }

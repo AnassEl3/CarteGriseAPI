@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class AuthenticationRequest {
     private String cin;
     private String mot_de_passe;
+    private boolean remember_me;
 }

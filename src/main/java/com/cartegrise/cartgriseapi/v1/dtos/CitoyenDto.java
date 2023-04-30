@@ -40,10 +40,7 @@ public class CitoyenDto {
     @Size(max = 10, message = "Le CIN de citoyen(ne) ne doit pas dépasser 10 caractères")
     private String cin;
     
-    @NotBlank(message = "Le adresse de citoyen(ne) est obligatoire")
     private String adresse;
     
-    @NotBlank(message = "Le telephone de citoyen(ne) est obligatoire")
-    @Size(max = 15, message = "Le telephone de citoyen(ne) ne doit pas dépasser 15 caractères")
     private String telephone;
 }

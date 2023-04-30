@@ -32,6 +32,7 @@ public class ApplicationConfig {
 
     }
 
+    // The authentication provider
     @Bean
     public AuthenticationProvider authenticationProvider() {
         // Data access object that fetchs the user details and encode password
@@ -41,11 +42,13 @@ public class ApplicationConfig {
         return authProvider;
     }
 
+    // The holder of the user details
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
+    // The encoder used to hash passwords
     @Bean
     public PasswordEncoder passwordEncoder() {
         // Password encoder (algorithme)
@@ -56,5 +59,4 @@ public class ApplicationConfig {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
-
 }

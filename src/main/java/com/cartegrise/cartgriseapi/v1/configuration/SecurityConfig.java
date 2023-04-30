@@ -24,21 +24,24 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         
-        http.csrf()
+        http
+            // Disable Cross Site Request Forgery
+            .csrf()
             .disable()
-            // Defining endpoints whitelist
+            // Allow Http requests on the following paths
             .authorizeHttpRequests()
-            .requestMatchers("/api/v1/auth/**", "/**")
+            // Defining endpoints whitelist (do not require authentication)
+            .requestMatchers("/auth/**")
             .permitAll()
-            // Securing the other endpoints
+            // Securing the other endpoints (require authentication)
             .anyRequest()
             .authenticated()
+            // Disabling sessions / Configuring session to be stateless (every request should be authenticated)
             .and()
-            // Configuring session to be stateless (every request should be authenticated)
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            // Define the authentication provider (DaoAuthenticationProvider)
             .and()
-            // Define the authentication provider
             .authenticationProvider(authenticationProvider)
             // Execute our Filter before the spring security filter
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

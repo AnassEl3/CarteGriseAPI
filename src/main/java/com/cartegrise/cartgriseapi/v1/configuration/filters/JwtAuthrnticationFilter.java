@@ -32,24 +32,23 @@ public class JwtAuthrnticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
-        final String jwt;
-        final String userCin;
-
+        
         // Check if the request is authenticable & has the token
-        if(authHeader == null || authHeader.startsWith("Bearer ")){
+        if(authHeader == null || !authHeader.startsWith("Bearer ")){
             filterChain.doFilter(request, response);
             return;
         }
-
+        
         // Extract info from token
-        jwt = authHeader.substring(7);
-        userCin = jwtService.extractUsername(jwt);
+        final String jwt = authHeader.substring(7);
+        final String userCin = jwtService.extractUsername(jwt);
 
         // Check if user is already logged
         if(userCin != null && SecurityContextHolder.getContext().getAuthentication() == null){
             UserDetails UserDetails = this.userDetailsService.loadUserByUsername(userCin);
             // Check if user & token is valid
             if(jwtService.isTokenValide(jwt, UserDetails)){
+                // Set the authentication token for the context holder
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(UserDetails, null, UserDetails.getAuthorities());
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 // Update security context holder

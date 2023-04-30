@@ -27,7 +27,7 @@ public class Vehicule {
     @Column(nullable = false, length = 15)
     private String modele;
 
-    @Column(nullable = false, length = 15) 
+    @Column(nullable = false, length = 15)
     private String marque;
 
     @Column(nullable = false, length = 15)
@@ -36,10 +36,10 @@ public class Vehicule {
     @Column(nullable = false, length = 15)
     private String puissance;
 
-    @Column(nullable = false, length = 2)
+    @Column(nullable = false)
     private Integer nb_place;
 
-    @Column(nullable = false, length = 2)
+    @Column(nullable = false)
     private Integer nb_cylindres;
     
     private Double ptac;

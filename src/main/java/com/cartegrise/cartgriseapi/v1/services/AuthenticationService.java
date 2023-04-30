@@ -36,6 +36,7 @@ public class AuthenticationService {
             .mot_de_passe(passwordEncoder.encode(request.getMot_de_passe()))
             .build();
         employeRepository.save(employe);
+        // Prepare the token
         var jwtToken = jwtService.generateToken(employe);
         return AuthenticationResponse.builder()
             .token(jwtToken)
@@ -50,7 +51,13 @@ public class AuthenticationService {
         // Retrieve the user from db
         var user = employeRepository.findByCin(request.getCin()).orElseThrow();
         // Generate a token
-        var jwtToken = jwtService.generateToken(user);
+        var jwtToken = "";
+        if(request.isRemember_me()){
+            jwtToken = jwtService.generateTokenRememberMe(user);
+        }else{
+            jwtToken = jwtService.generateToken(user);
+        }
+        // Return token
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();

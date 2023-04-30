@@ -1,9 +1,13 @@
 package com.cartegrise.cartgriseapi.v1.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.cartegrise.cartgriseapi.v1.models.Citoyen;
 
-public interface CitoyenRepository extends JpaRepository<Citoyen, Long> {
-    
+@RepositoryRestResource(path = "citoyens", collectionResourceRel = "citoyens")
+public interface CitoyenRepository extends CrudRepository<Citoyen, Long> {
+    Optional<Citoyen> findByCin(String cin);
 }

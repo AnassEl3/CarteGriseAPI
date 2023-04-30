@@ -35,6 +35,7 @@ public class Citoyen {
     @Column(nullable = false, length = 1)
     private Character sexe;
     
+    @Column(nullable = false)
     private Date date_naissance;
     
     @Column(nullable = false, length = 10)

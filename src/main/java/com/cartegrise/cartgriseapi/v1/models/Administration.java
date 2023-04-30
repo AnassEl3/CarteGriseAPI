@@ -6,7 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,7 +27,6 @@ public class Administration {
     private Long id;
 
     @Column(nullable = false, length = 50)
-    @NotNull(message = "Le champ Nom est obligatoire")
     private String nom;
     
     private String adresse;

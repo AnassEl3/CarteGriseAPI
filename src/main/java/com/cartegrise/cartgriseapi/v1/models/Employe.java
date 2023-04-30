@@ -36,13 +36,19 @@ public class Employe implements UserDetails {
     @Column(nullable = false, length = 30)
     private String prenom;
 
+    @Column(nullable = false, length = 1)
+    private Character sexe;
+
+    @Column(nullable = false)
     private Date date_naissance;
 
     @Column(nullable = false, length = 10, unique = true)
     private String cin;
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false)
     private String mot_de_passe;
+
+    private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -58,7 +64,7 @@ public class Employe implements UserDetails {
     }
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
     @Override
     public boolean isAccountNonLocked() {

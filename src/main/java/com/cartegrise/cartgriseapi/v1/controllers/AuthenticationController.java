@@ -6,14 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.cartegrise.cartgriseapi.v1.dtos.AuthenticationRequest;
 import com.cartegrise.cartgriseapi.v1.dtos.AuthenticationResponse;
 import com.cartegrise.cartgriseapi.v1.dtos.RegisterRequest;
 import com.cartegrise.cartgriseapi.v1.services.AuthenticationService;
 
-@Controller
-@RequestMapping("/api/v1/auth")
+@RestController
+@RequestMapping("/auth")
 public class AuthenticationController {
 
     @Autowired
