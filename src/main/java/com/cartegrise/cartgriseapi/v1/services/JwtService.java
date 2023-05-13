@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class JwtService {
 
-    @Value("${JWT_SECRET_KEY}")
-    private static String SECRET_KEY;
+    // @Value("${JWT_SECRET_KEY}")
+    private static String SECRET_KEY = "4125442A472D4B6150645267556B58703273357638792F423F4528482B4D6251";
     private static Long JWT_LIFE_TIME = 3600000L; // 1000 * 60 * 60 = 1 Hour
     private static Long REMEMBER_JWT_LIFE_TIME = 31536000000L; // 1000 * 60 * 60 * 24 * 365 = 1 Year
 

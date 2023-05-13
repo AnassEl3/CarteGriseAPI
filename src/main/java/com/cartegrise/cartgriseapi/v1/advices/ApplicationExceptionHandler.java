@@ -1,5 +1,7 @@
 package com.cartegrise.cartgriseapi.v1.advices;
 
+import java.util.stream.Collectors;
+
 import org.springframework.data.rest.core.RepositoryConstraintViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
