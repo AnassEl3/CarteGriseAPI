@@ -29,8 +29,8 @@ public class DemandeValidator implements Validator{
         if (validatorDefinition.stringEmpty(demande.getEtat())) {
             errors.rejectValue("etat", "L'etat de demande est obligatoire");
         }
-        if (validatorDefinition.stringExceedsMax(demande.getEtat(), 2)) {
-            errors.rejectValue("etat", "L'etat deu demande ne doit pas dépasser 2 caractères");
+        if (validatorDefinition.stringExceedsMax(demande.getCode(), 10)) {
+            errors.rejectValue("prenom", "Le code de la demande ne doit pas dépasser 10 caractères");
         }
     }
 }

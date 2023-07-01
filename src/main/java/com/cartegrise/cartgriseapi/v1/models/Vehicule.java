@@ -3,7 +3,10 @@ package com.cartegrise.cartgriseapi.v1.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -20,7 +23,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Vehicule {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.PROTECTED)
     private Long id;
 
@@ -43,4 +46,8 @@ public class Vehicule {
     private Integer nb_cylindres;
     
     private Double ptac;
+
+    @OneToOne
+    @JoinColumn(name = "cartegise_fk")
+    CarteGrise carteGrise;
 }

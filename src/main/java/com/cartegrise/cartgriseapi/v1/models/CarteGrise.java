@@ -5,7 +5,11 @@ import java.sql.Date;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -22,7 +26,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CarteGrise {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.PROTECTED)
     private Long id;
     
@@ -42,4 +46,16 @@ public class CarteGrise {
     
     @Column(length = 20)
     private String vehicule_usage;
+
+    @OneToOne
+    @JoinColumn(name = "vehicule_fk")
+    private Vehicule vehicule;
+    
+    @ManyToOne
+    @JoinColumn(name = "citoyen_fk")
+    private Citoyen citoyen;
+
+    @ManyToOne
+    @JoinColumn(name = "demande_fk")
+    private Demande demande;
 }

@@ -1,6 +1,7 @@
 package com.cartegrise.cartgriseapi.v1.configuration;
 
 import java.sql.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +14,7 @@ import com.cartegrise.cartgriseapi.v1.configuration.validators.DemandeValidator;
 import com.cartegrise.cartgriseapi.v1.configuration.validators.DocumentValidator;
 import com.cartegrise.cartgriseapi.v1.configuration.validators.EmployeValidator;
 import com.cartegrise.cartgriseapi.v1.configuration.validators.VehiculeValidator;
+import com.cartegrise.cartgriseapi.v1.models.Employe;
 import com.cartegrise.cartgriseapi.v1.repositories.CitoyenRepository;
 import com.cartegrise.cartgriseapi.v1.repositories.EmployeRepository;
 
@@ -57,7 +59,13 @@ public class ValidatorDefinition {
         return false;
     }
     public boolean employeCinDuplicate(String input) {
-        return employeRepository.findByCin(input).isPresent();
+        Optional<Employe> emp = employeRepository.findByCin(input);
+        if(emp.isPresent()){
+            if(!emp.get().getCin().equals(input)){
+                return true;
+            }
+        }
+        return false;
     }
     public boolean citoyenCinDuplicate(String input) {
         return citoyenRepository.findByCin(input).isPresent();

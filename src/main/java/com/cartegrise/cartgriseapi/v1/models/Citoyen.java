@@ -2,10 +2,15 @@ package com.cartegrise.cartgriseapi.v1.models;
 
 import java.sql.Date;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -22,7 +27,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Citoyen {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.PROTECTED)
     private Long id;
 
@@ -48,4 +53,19 @@ public class Citoyen {
     
     @Column(length = 15)
     private String telephone;
+
+    @Column(length = 20)
+    private String nationalite;
+
+    @Column(length = 50)
+    private String profession;
+
+    @Column(length = 30)
+    private String email;
+
+    // @OneToMany
+    // private List<CarteGrise> cartegrises = new ArrayList<>();
+    
+    @OneToMany
+    private List<Demande> demandes = new ArrayList<>();
 }

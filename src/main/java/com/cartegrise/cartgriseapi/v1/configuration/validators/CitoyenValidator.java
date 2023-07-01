@@ -35,9 +35,6 @@ public class CitoyenValidator implements Validator{
         if (validatorDefinition.stringEmpty(Character.toString(citoyen.getSexe()))) {
             errors.rejectValue("sexe", "Le sexe de citoyen(ne) est obligatoire");
         }
-        if (validatorDefinition.stringExceedsMax(Character.toString(citoyen.getSexe()), 1)) {
-            errors.rejectValue("sexe", "Le sexe de citoyen(ne) ne doit pas dépasser 1 caractère");
-        }
         if (validatorDefinition.dateEmpty(citoyen.getDate_naissance())) {
             errors.rejectValue("date_naissance", "La date de naissance de citoyen(ne) est obligatoire");
         }

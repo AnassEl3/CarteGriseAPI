@@ -29,6 +29,9 @@ public class AdministrationValidator implements Validator {
         if (validatorDefinition.stringExceedsMax(administration.getTelephone(), 15)) {
             errors.rejectValue("nom", "Le téléphone de l'administration ne doit pas dépasser 15 caractères");
         }
+        if (validatorDefinition.stringExceedsMax(administration.getTelephone(), 15)) {
+            errors.rejectValue("nom", "Le téléphone de l'administration ne doit pas dépasser 15 caractères");
+        }
     }
     
 }

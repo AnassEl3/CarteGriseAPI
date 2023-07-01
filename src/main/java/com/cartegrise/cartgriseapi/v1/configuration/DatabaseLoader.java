@@ -27,22 +27,22 @@ public class DatabaseLoader  implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        employeRepository.save(
-            Employe.builder()
-                .nom("El yaagoubi")
-                .prenom("Anass")
-                .sexe('m')
-                .date_naissance(new Date(new SimpleDateFormat("dd/MM/yyyy").parse("04/03/2001").getTime()))
-                .cin("cd25665")
-                .mot_de_passe(passwordEncoder.encode("12345678"))
-                .build()
-        );
-        administrationRepository.save(
-            Administration.builder()
-                .nom("NARSA")
-                .adresse("Fès")
-                .build()
-        );
+        // employeRepository.save(
+        //     Employe.builder()
+        //         .nom("el yaagoubi")
+        //         .prenom("anass")
+        //         .sexe('m')
+        //         .date_naissance(new Date(new SimpleDateFormat("dd/MM/yyyy").parse("04/03/2001").getTime()))
+        //         .cin("cd25665")
+        //         .mot_de_passe(passwordEncoder.encode("12345678"))
+        //         .build()
+        // );
+        // administrationRepository.save(
+        //     Administration.builder()
+        //         .nom("NARSA")
+        //         .adresse("Fès")
+        //         .build()
+        // );
     }
     
 }

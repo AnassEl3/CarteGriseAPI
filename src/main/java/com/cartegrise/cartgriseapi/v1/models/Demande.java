@@ -2,10 +2,19 @@ package com.cartegrise.cartgriseapi.v1.models;
 
 import java.sql.Date;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.time.LocalDate;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +32,7 @@ import lombok.AccessLevel;
 @NoArgsConstructor
 public class Demande {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.PROTECTED)
     private Long id;
 
@@ -31,11 +40,20 @@ public class Demande {
     private String type;
 
     @Column(nullable = false)
-    private Date date_demande;
+    private Date date_demande = Date.valueOf(LocalDate.now());
 
-    @Column(nullable = false, length = 2)
+    @Column(nullable = false)
     private String etat;
     
     private String description_etat;
 
+    @Column(length = 10, unique = true)
+    private String code;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="citoyen_fk")
+    private Citoyen citoyen;
+    
+    @OneToMany
+    private List<Document> documents = new ArrayList<>();
 }

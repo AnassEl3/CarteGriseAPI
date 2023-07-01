@@ -1,5 +1,7 @@
 package com.cartegrise.cartgriseapi.v1.configuration;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -20,46 +22,57 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-    
+
     private final JwtAuthrnticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
         http
-            // Allow cors configuration
-            .cors()
-            .and()
-            // Disable Cross Site Request Forgery (Since clients are not web browsers)
-            .csrf()
-            .disable()
-            // Allow Http requests on the following paths
-            .authorizeHttpRequests()
-            // Defining endpoints whitelist (do not require authentication)
-            .requestMatchers("/auth/**")
-            .permitAll()
-            // Securing the other endpoints (require authentication)
-            .anyRequest()
-            .authenticated()
-            // Disabling sessions / Configuring session to be stateless (every request should be authenticated)
-            .and()
-            .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            // Define the authentication provider (DaoAuthenticationProvider)
-            .and()
-            .authenticationProvider(authenticationProvider)
-            // Execute our Filter before the spring security filter
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                // Allow cors configuration
+                .cors()
+                .and()
+                // Disable Cross Site Request Forgery (Since clients are not web browsers)
+                .csrf()
+                .disable()
+                // Allow Http requests on the following paths
+                .authorizeHttpRequests()
+                // Defining endpoints whitelist (do not require authentication)
+                .requestMatchers("/auth/**")
+                .permitAll()
+                // Securing the other endpoints (require authentication)
+                .anyRequest()
+                .authenticated()
+                // Disabling sessions / Configuring session to be stateless (every request
+                // should be authenticated)
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                // Define the authentication provider (DaoAuthenticationProvider)
+                .and()
+                .authenticationProvider(authenticationProvider)
+                // Execute our Filter before the spring security filter
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
-    // Configuring the CROS 
+    // Configuring the CROS
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        CorsConfiguration config = new CorsConfiguration();
+        config.applyPermitDefaultValues();
+        // config.setAllowedOrigins(Arrays.asList("http://localhost:8778/"));
+        // config.setAllowCredentials(false);
+        // config.setMaxAge(3600L);
+        config.setAllowedMethods(Arrays.asList("GET","POST","PATCH", "PUT", "DELETE"));
+        
+        source.registerCorsConfiguration(
+            "/**", 
+            config
+        );
         return source;
     }
 }
